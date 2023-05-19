@@ -1,0 +1,85 @@
+ui <- fluidPage(
+  tags$video(src = "relative/path/to/crimevideo.mp4", type = "video/mp4", autoplay = TRUE, controls = TRUE),
+  
+  # Distractor task
+  conditionalPanel(
+    condition = "input.videoEnded",
+    "Distractor task goes here...",
+    actionButton("distractor-task-complete", "Distractor Task Complete")
+  ),
+  
+  # Lineup images
+  conditionalPanel(
+    condition = "input.distractorTaskCompleted",
+    tags$h3("Lineup images and selection go here..."),
+    tags$div(
+      style = "display: flex; flex-wrap: wrap;",
+      lapply(1:4, function(i) {
+        tags$div(
+          style = "width: 30%; text-align: center; margin-bottom: 20px;",
+          tags$img(src = "relative/path/to/image.png", width = "100%"),
+          textOutput(paste0("lineup-selection-", i))
+        )
+      })
+    ),
+    actionButton("lineup-selection-complete", "Lineup Selection Complete")
+  ),
+  
+  # Confidence rating
+  conditionalPanel(
+    condition = "input.lineupSelectionMade",
+    "Confidence rating goes here...",
+    actionButton("confidence-rating-submit", "Submit Confidence Rating")
+  ),
+  
+  # Feedback
+  conditionalPanel(
+    condition = "input.confidenceRatingSubmitted",
+    "Feedback goes here..."
+  ),
+  
+  # JavaScript code to control app flow
+  tags$script('
+    // Detect when the crime video ends
+    document.getElementById("crime-video").addEventListener("ended", function() {
+      Shiny.onInputChange("videoEnded", true);
+    });
+    
+    // Detect when the distractor task is completed
+    $("#distractor-task-complete").click(function() {
+      Shiny.onInputChange("distractorTaskCompleted", true);
+    });
+    
+    // Detect when the lineup selection is made
+    $("#lineup-selection-complete").click(function() {
+      Shiny.onInputChange("lineupSelectionMade", true);
+    });
+    
+    // Detect when the confidence rating is submitted
+    $("#confidence-rating-submit").click(function() {
+      Shiny.onInputChange("confidenceRatingSubmitted", true);
+    });
+  ')
+)
+
+server <- function(input, output, session) {
+  observeEvent(input$videoEnded, {
+    # Handle video ended event
+    # You can add relevant code here
+  })
+  
+  observeEvent(input$distractorTaskCompleted, {
+    # Handle distractor task complete event
+  })
+  
+  observeEvent(input$lineupSelectionMade, {
+    # Handle lineup selection made event
+  })
+  
+  observeEvent(input$confidenceRatingSubmitted, {
+    # Handle confidence rating submitted event
+  })
+}
+
+shinyApp(ui, server)
+
