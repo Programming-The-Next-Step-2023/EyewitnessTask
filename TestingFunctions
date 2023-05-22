@@ -1,0 +1,32 @@
+# Define the test script
+test_script <- ShinyDriver$new("C:\Users\veerl\OneDrive\Documents\UvA\TheNextStep\IWitness\IWitness.R")
+
+# Test the videoEnded event handler
+test_that("videoEnded event handler works correctly", {
+  # Simulate the video ended event
+  test_script$setInputs(videoEnded = TRUE)
+  
+})
+
+# Test the distractorTaskCompleted event handler
+test_that("distractorTaskCompleted event handler works correctly", {
+  # Simulate the distractor task complete event
+  test_script$setInputs(distractorTaskCompleted = TRUE)
+  
+})
+
+# Test the lineupSelectionMade event handler
+test_that("lineupSelectionMade event handler works correctly", {
+  # Simulate the lineup selection made event
+  test_script$setInputs(lineupSelectionMade = TRUE)
+ 
+})
+
+# Test the confidenceRatingSubmitted event handler
+test_that("confidenceRatingSubmitted event handler works correctly", {
+  # Simulate the confidence rating submitted event
+  test_script$setInputs(confidenceRatingSubmitted = TRUE)
+  
+})
+# Run the tests
+test_script$stop()
