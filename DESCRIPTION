@@ -1,0 +1,9 @@
+Package: IWitness
+Type: Package
+Title: IWitness
+Version: 0.1.0
+Author: Veerle Vijverberg
+Maintainer: Veerle Vijverberg veerle.vijverberg@student.uva.nl
+Description: Experimental shiny app in R wherein users make an identification decision after watching a video of a crime. They are then given feedback on their response.
+Encoding: UTF-8
+LazyData: true
