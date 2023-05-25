@@ -1,0 +1,15 @@
+#' IWitness
+#'
+#' @title Eyewitness Memory Task
+#' @description Users make an identification decision after watching a video of a crime.
+#' They are then given feedback on their response. Colors in \code{\link{brocolors}}.
+#'
+
+#'
+#' @examples
+#' \dontrun{
+#' IWitness()
+#' }
+#'
+#' @export
+
